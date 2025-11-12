@@ -91,10 +91,15 @@
 
 ;;12. reto integrador: promedio de numeros mayores a 5 
 (define (promedio-mayores-a-5 lst)
-  (if (null? (filter (lambda (x) (> x 5)) lst))
-      0
-      (/ (apply + (filter (lambda (x) (> x 5)) lst))
-         (length (filter (lambda (x) (> x 5)) lst)))))
+  (let ((mayores (filter (lambda (x) (> x 5)) lst)))
+    (if (null? mayores)
+        0
+        (exact->inexact
+         (/ (apply + mayores) (length mayores))))))
+
+(printf "Promedio de los números mayores a 5: ~a\n"
+        (promedio-mayores-a-5 '(3 8 10 4 9 2 7)))
+
 
   (printf "12. promedio de los nmeros mayores a 5 : ~a\n" (promedio-mayores-a-5 '(3 8 10 4 9 2 7)))
 
